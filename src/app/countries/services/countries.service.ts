@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, of } from 'rxjs';
+import { Observable, catchError, delay, of } from 'rxjs';
 import { Countries } from '../interfaces/country.interface';
 
 const URL_COUNTRIES = 'https://restcountries.com/v3.1';
@@ -11,7 +11,7 @@ export class CountriesService {
   search(queryType: string, query: string): Observable<Countries[]> {
     return this.httpClient
       .get<Countries[]>(`${URL_COUNTRIES}/${queryType}/${query}`)
-      .pipe(catchError(() => of([] as Countries[])));
+      .pipe(catchError(() => of([] as Countries[])), delay(1000));
   }
 
   searchByAlphaCode(alphaCode: string): Observable<Countries[]> {

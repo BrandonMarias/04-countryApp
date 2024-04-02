@@ -6,6 +6,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
 import { ContactPageComponent } from './pages/contact-page/contact-page.component';
 import { CountrySearchBoxComponent } from './components/country-search-box/country-search-box.component';
+import { SpiinerLoaderComponent } from './components/spiiner-loader/spiiner-loader.component';
 
 
 
@@ -15,7 +16,8 @@ import { CountrySearchBoxComponent } from './components/country-search-box/count
     AboutPageComponent,
     SidebarComponent,
     ContactPageComponent,
-    CountrySearchBoxComponent
+    CountrySearchBoxComponent,
+    SpiinerLoaderComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +28,8 @@ import { CountrySearchBoxComponent } from './components/country-search-box/count
     AboutPageComponent,
     SidebarComponent,
     ContactPageComponent,
-    CountrySearchBoxComponent
+    CountrySearchBoxComponent,
+    SpiinerLoaderComponent
   ]
 })
 export class SharedModule { }

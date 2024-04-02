@@ -12,10 +12,14 @@ export class ByCapitalPageComponent {
 
   constructor(private countriesService: CountriesService) {}
 
+  public isLoading: boolean = false;
+
   searchByCapital(capital: string): void {
+    this.isLoading = true;
     this.countriesService.searchByCapital(capital)
     .subscribe((countries) => {
       this.countries = countries;
+      this.isLoading = false;
     });
   }
 }

@@ -3,7 +3,8 @@
 
 <div class="row">
   <div class="col">
-    <shared-country-search-box [placeholder]="'Buscar Por Capital'"
+    <shared-country-search-box
+      [placeholder]="'Buscar Por Capital'"
       (onSearch)="searchByCapital($event)"
     ></shared-country-search-box>
   </div>
@@ -11,6 +12,9 @@
 <hr />
 <div class="row">
   <div class="col">
+    @if (isLoading) {
+    <shared-spiiner-loader></shared-spiiner-loader>
+    }
     <countries-country-table [countries]="countries"></countries-country-table>
   </div>
 </div>
