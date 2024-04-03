@@ -11,7 +11,7 @@ export class CountriesService {
   search(queryType: string, query: string): Observable<Countries[]> {
     return this.httpClient
       .get<Countries[]>(`${URL_COUNTRIES}/${queryType}/${query}`)
-      .pipe(catchError(() => of([] as Countries[])), delay(1000));
+      .pipe(catchError(() => of([] as Countries[])));
   }
 
   searchByAlphaCode(alphaCode: string): Observable<Countries[]> {

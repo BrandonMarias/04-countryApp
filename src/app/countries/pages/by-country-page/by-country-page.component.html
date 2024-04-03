@@ -11,6 +11,9 @@
 <hr />
 <div class="row">
   <div class="col">
+    @if (isLoading) {
+      <shared-spiiner-loader></shared-spiiner-loader>
+      }
     <countries-country-table [countries]="countries"></countries-country-table>
   </div>
 </div>

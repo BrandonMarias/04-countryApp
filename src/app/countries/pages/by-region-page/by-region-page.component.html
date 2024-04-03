@@ -2,15 +2,25 @@
 <hr />
 
 <div class="row">
-  <div class="col">
-    <shared-country-search-box [placeholder]="'Buscar Por Región'"
-      (onSearch)="searchByRegion($event)"
-    ></shared-country-search-box>
+  <div class="col text-center">
+    @for (region of getRegions(); track $index) {
+    <button
+      type="button"
+      class="btn btn-lg m-2"
+      (click)="searchByRegion(region)"
+      [ngClass]="{ 'btn-outline-primary': region === getSelectedRegion() }"
+    >
+      {{ region }}
+    </button>
+    }
   </div>
 </div>
 <hr />
 <div class="row">
   <div class="col">
+    @if (isLoading) {
+    <shared-spiiner-loader></shared-spiiner-loader>
+    }
     <countries-country-table [countries]="countries"></countries-country-table>
   </div>
 </div>
