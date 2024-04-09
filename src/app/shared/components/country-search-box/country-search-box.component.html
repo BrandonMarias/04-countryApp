@@ -4,5 +4,6 @@
   [placeholder]="placeholder"
   class="form-control"
   #txtSearchIput
+  [value]="initialValue"
   (keyup)="onKeyPress(txtSearchIput.value)"
 />

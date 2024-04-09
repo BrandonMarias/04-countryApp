@@ -1,8 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Countries } from '../../interfaces/country.interface';
 import { CountriesService } from '../../services/countries.service';
-
-type Region = 'Africa' | 'Americas' | 'Asia' | 'Europe' | 'Oceania';
+import { Regions } from '../../interfaces/regions.type';
 
 @Component({
   selector: 'countries-by-region-page',
@@ -12,14 +11,15 @@ type Region = 'Africa' | 'Americas' | 'Asia' | 'Europe' | 'Oceania';
 export class ByRegionPageComponent {
   public countries: Countries[] = [];
 
-  private regions: Region[] = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania'];
+  private regions: Regions[] = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania'];
 
-  private selectedRegion?: Region;
+  @Input()
+  public selectedRegion?: Regions;
 
   constructor(private countriesService: CountriesService) {}
   public isLoading: boolean = false;
 
-  searchByRegion(region: Region): void {
+  searchByRegion(region: Regions): void {
     this.selectedRegion = region;
     this.isLoading = true;
     this.countriesService.searchByRegion(region)
@@ -29,11 +29,11 @@ export class ByRegionPageComponent {
     });
   }
 
-  getSelectedRegion(): Region | undefined{
+  getSelectedRegion(): Regions | undefined{
     return this.selectedRegion;
   }
 
-  getRegions(): Region[] {
+  getRegions(): Regions[] {
     return this.regions;
   }
 }
