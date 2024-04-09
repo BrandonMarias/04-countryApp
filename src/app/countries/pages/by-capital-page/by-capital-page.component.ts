@@ -7,7 +7,7 @@ import { Countries } from '../../interfaces/country.interface';
   templateUrl: './by-capital-page.component.html',
   styleUrl: './by-capital-page.component.scss',
 })
-export class ByCapitalPageComponent implements OnInit{
+export class ByCapitalPageComponent implements OnInit {
   public countries: Countries[] = [];
   public initialValue: string = '';
 
@@ -22,12 +22,9 @@ export class ByCapitalPageComponent implements OnInit{
 
   searchByCapital(capital: string): void {
     this.isLoading = true;
-    this.countriesService.searchByCapital(capital)
-    .subscribe((countries) => {
+    this.countriesService.searchByCapital(capital).subscribe((countries) => {
       this.countries = countries;
       this.isLoading = false;
     });
   }
-
-
 }
