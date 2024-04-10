@@ -23,7 +23,20 @@ export class CountriesService {
     },
   };
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {
+    this.loadCacheFromLocalStorage();
+  }
+
+  private saveCacheToLocalStorage(): void {
+    localStorage.setItem('cacheStore', JSON.stringify(this.cacheStore));
+  }
+
+  private loadCacheFromLocalStorage(): void {
+    const cacheStore = localStorage.getItem('cacheStore');
+    if (cacheStore) {
+      this.cacheStore = JSON.parse(cacheStore);
+    }
+  }
 
   search(queryType: string, query: string): Observable<Countries[]> {
     return this.httpClient
@@ -40,7 +53,8 @@ export class CountriesService {
       tap(
         (countries) =>
           (this.cacheStore.byCapital = { term: capital, data: countries })
-      )
+      ),
+      tap(() => this.saveCacheToLocalStorage())
     );
   }
 
@@ -49,7 +63,8 @@ export class CountriesService {
       tap(
         (countries) =>
           (this.cacheStore.byCountry = { term: country, data: countries })
-      )
+      ),
+      tap(() => this.saveCacheToLocalStorage())
     );
   }
 
@@ -58,7 +73,8 @@ export class CountriesService {
       tap(
         (countries) =>
           (this.cacheStore.byRegion = { term: region, data: countries })
-      )
+      ),
+      tap(() => this.saveCacheToLocalStorage())
     );
   }
 
